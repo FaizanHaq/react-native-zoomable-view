@@ -733,7 +733,7 @@ class ReactNativeZoomableView extends Component<
     const offsetX = this.offsetX + shift.x;
     let offsetY = this.offsetY + shift.y;
 
-    if(this.zoomAnim._value == 1 && this.props.panningMode == "x-axis-only")
+    if(this.zoomLevel == 1 && this.props.panningMode == "x-axis-only")
     {
       offsetY = 0;
     }
