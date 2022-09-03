@@ -47,6 +47,7 @@ class ReactNativeZoomableView extends Component<
   doubleTapFirstTapReleaseTimestamp: number;
 
   static defaultProps = {
+    panningMode:"default",
     zoomEnabled: true,
     initialZoom: 1,
     initialOffsetX: 0,
@@ -730,7 +731,12 @@ class ReactNativeZoomableView extends Component<
     if (!shift) return;
 
     const offsetX = this.offsetX + shift.x;
-    const offsetY = this.offsetY + shift.y;
+    let offsetY = this.offsetY + shift.y;
+
+    if(this.zoomAnim._value == 1 && this.props.panningMode == "x-axis-only")
+    {
+      offsetY = 0;
+    }
 
     if (this.props.debug) {
       const x = gestureState.moveX - this.state.originalPageX;
