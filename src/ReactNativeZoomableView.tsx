@@ -129,6 +129,35 @@ class ReactNativeZoomableView extends Component<
           this._getZoomableViewEventObject()
         ),
       onShouldBlockNativeResponder: () => false,
+      onMoveShouldSetResponderCapture: (evt, gestureState) => {
+        //console.log("ReactNativeZoomableView > onMoveShouldSetResponderCapture > true", gestureState);
+        return true;
+      },
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => {
+        if(gestureState.numberActiveTouches > 1)
+        {
+          //console.log("ReactNativeZoomableView > onStartShouldSetPanResponderCapture > TRUE", gestureState);
+          return true;
+        }
+        
+        //console.log("ReactNativeZoomableView > onStartShouldSetPanResponderCapture > false", gestureState);
+        return false;
+      },
+      onMoveShouldSetPanResponderCapture:  (evt, gestureState) => {
+        if(gestureState.numberActiveTouches > 1)
+        {
+          //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState);
+          return true;
+        }
+        if(gestureState.dx != 0 || gestureState.dy != 0)
+        {
+          //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState.dx, gestureState.dy);
+          return true;
+        }
+        //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > false", gestureState);
+        return false;
+      },
+
     });
 
     this.zoomSubjectWrapperRef = createRef<View>();
