@@ -6,6 +6,7 @@ import {
   PanResponder,
   PanResponderGestureState,
   StyleSheet,
+  Platform,
   View,
 } from 'react-native';
 
@@ -144,11 +145,13 @@ class ReactNativeZoomableView extends Component<
         return false;
       },
       onMoveShouldSetPanResponderCapture:  (evt, gestureState) => {
+        //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture", gestureState);
         if(gestureState.numberActiveTouches > 1)
         {
           //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState);
           return true;
         }
+        if(Platform.OS === 'ios'){return false;}
         if(gestureState.dx != 0 || gestureState.dy != 0)
         {
           //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState.dx, gestureState.dy);
