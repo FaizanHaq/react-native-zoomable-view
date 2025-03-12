@@ -24,7 +24,6 @@ export interface ZoomableViewEvent {
 
 export interface ReactNativeZoomableViewProps extends ViewProps {
   // options
-  panningMode?: string;
   zoomEnabled?: boolean;
   initialZoom?: number;
   initialOffsetX?: number;
@@ -43,6 +42,7 @@ export interface ReactNativeZoomableViewProps extends ViewProps {
   movementSensibility?: number;
   longPressDuration?: number;
   visualTouchFeedbackEnabled?: boolean;
+  disablePanOnInitialZoom?: boolean;
   style?: any;
 
   // Zoom animated value ref
@@ -102,12 +102,6 @@ export interface ReactNativeZoomableViewProps extends ViewProps {
     zoomableViewEventObject: ZoomableViewEvent
   ) => void;
   onStartShouldSetPanResponder?: (
-    event: GestureResponderEvent,
-    gestureState: PanResponderGestureState,
-    zoomableViewEventObject: ZoomableViewEvent,
-    baseComponentResult: boolean
-  ) => boolean;
-  onMoveShouldSetPanResponder?: (
     event: GestureResponderEvent,
     gestureState: PanResponderGestureState,
     zoomableViewEventObject: ZoomableViewEvent,

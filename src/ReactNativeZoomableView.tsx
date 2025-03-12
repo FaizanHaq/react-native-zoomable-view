@@ -131,7 +131,7 @@ class ReactNativeZoomableView extends Component<
         ),
       onShouldBlockNativeResponder: () => false,
       // onMoveShouldSetResponderCapture: (evt, gestureState) => {
-      //   //console.log("ReactNativeZoomableView > onMoveShouldSetResponderCapture > true", gestureState);
+      //   console.log("ReactNativeZoomableView > onMoveShouldSetResponderCapture > true", gestureState);
       //   return true;
       // },
       onStartShouldSetPanResponderCapture: (evt, gestureState) => {
@@ -144,22 +144,23 @@ class ReactNativeZoomableView extends Component<
         //console.log("ReactNativeZoomableView > onStartShouldSetPanResponderCapture > false", gestureState);
         return false;
       },
-      onMoveShouldSetPanResponderCapture:  (evt, gestureState) => {
-        //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture", gestureState);
-        if(gestureState.numberActiveTouches > 1)
-        {
-          //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState);
-          return true;
-        }
-        if(Platform.OS === 'ios'){return false;}
-        if(gestureState.dx != 0 || gestureState.dy != 0)
-        {
-          //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState.dx, gestureState.dy);
-          return true;
-        }
-        //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > false", gestureState);
-        return false;
-      },
+      // onMoveShouldSetPanResponderCapture:  (evt, gestureState) => {
+      //   console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture", gestureState);
+      //   if(gestureState.numberActiveTouches > 1)
+      //   {
+      //     //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState);
+      //     return true;
+      //   }
+      //   if(Platform.OS === 'ios'){return true;}
+      //   if(gestureState.dx != 0 || gestureState.dy != 0)
+      //   {
+        
+      //     //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > TRUE", gestureState.dx, gestureState.dy);
+      //     return true;
+      //   }
+      //   //console.log("ReactNativeZoomableView > onMoveShouldSetPanResponderCapture > false", gestureState);
+      //   return false;
+      // },
 
     });
 
@@ -760,6 +761,11 @@ class ReactNativeZoomableView extends Component<
       x: gestureState.moveX,
       y: gestureState.moveY,
     });
+
+    if(this.zoomLevel == 1 && this.props.panningMode == "none")
+    {
+      return;
+    }
     if (!shift) return;
 
     const offsetX = this.offsetX + shift.x;
