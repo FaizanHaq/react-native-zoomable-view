@@ -105,7 +105,7 @@ class ReactNativeZoomableView extends Component<
 
     this.gestureHandlers = PanResponder.create({
       onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
-      onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
+      //onMoveShouldSetPanResponder: this._handleMoveShouldSetPanResponder,
       onPanResponderGrant: this._handlePanResponderGrant,
       onPanResponderMove: this._handlePanResponderMove,
       onPanResponderRelease: this._handlePanResponderEnd,
@@ -399,20 +399,20 @@ class ReactNativeZoomableView extends Component<
     return true;
   };
 
-  _handleMoveShouldSetPanResponder = (
-    e: GestureResponderEvent,
-    gestureState: PanResponderGestureState
-  ) => {
-    if (this.props.onMoveShouldSetPanResponder) {
-      return this.props.onMoveShouldSetPanResponder(
-        e,
-        gestureState,
-        this._getZoomableViewEventObject(),
-        false
-      );
-    }
-    return true;
-  };
+  // _handleMoveShouldSetPanResponder = (
+  //   e: GestureResponderEvent,
+  //   gestureState: PanResponderGestureState
+  // ) => {
+  //   if (this.props.onMoveShouldSetPanResponder) {
+  //     return this.props.onMoveShouldSetPanResponder(
+  //       e,
+  //       gestureState,
+  //       this._getZoomableViewEventObject(),
+  //       false
+  //     );
+  //   }
+  //   return true;
+  // };
 
   /**
    * Calculates pinch distance

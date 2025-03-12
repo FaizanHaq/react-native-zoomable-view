@@ -25,6 +25,7 @@ export interface ZoomableViewEvent {
 export interface ReactNativeZoomableViewProps extends ViewProps {
   // options
   zoomEnabled?: boolean;
+  panningMode?: any,
   initialZoom?: number;
   initialOffsetX?: number;
   initialOffsetY?: number;
